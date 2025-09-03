@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Vue Dynamic Styling</h1>
+    </header>
+    <section id="styling" v-cloak>
+      <!-- ways to add dynamic styling -->
+      <!-- 1. using style bind: can also use 'border-color' instead of camel case, but in quotes -->
+      <div
+        class="demo"
+        :style="{ borderColor: boxA ? 'red' : '#ccc'}"
+        @click="boxSelected('A')"
+      >
+        A
+      </div>
+
+      <!-- 2. adding classes dynamically -->
+      <div :class="boxB ? 'demo active' : 'demo'" @click="boxSelected('B')">
+        B
+      </div>
+
+      <!-- 3. object in class -->
+      <div :class="{ demo: true, active: boxC }" @click="boxSelected('C')">
+        C
+      </div>
+
+      <!-- 4. demo is always true, so it is redundant, and can use another class one static and other dynamic. the dynamic is merged to the static one later -->
+      <div class="demo" :class="{ active: boxD }" @click="boxSelected('D')">
+        D
+      </div>
+
+      <!-- 5. computed properties -->
+      <div class="demo" :class="boxEClasses" @click="boxSelected('E')">E</div>
+
+      <!-- 6. dynamic classes - array -->
+      <div :class="['demo', { active: boxF }]" @click="boxSelected('F')">F</div>
+
+      <!-- <div class="demo"></div> -->
+    </section>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>
